@@ -1,0 +1,40 @@
+CREATE DATABASE mtuci_db
+
+\c mtuci_db
+
+CREATE TABLE chairs (id SERIAL PRIMARY KEY, name varchar NOT NULL UNIQUE, dean varchar NOT NULL);
+CREATE TABLE student_group (id SERIAL PRIMARY KEY, numb varchar NOT NULL UNIQUE, chair varchar NOT NULL REFERENCES chairs(name));
+CREATE TABLE student (id SERIAL PRIMARY KEY, full_name varchar NOT NULL, passport varchar(10) NOT NULL, group_numb varchar REFERENCES student_group(numb));
+
+INSERT INTO chairs (name, dean) VALUES ('МКиИТ', 'ИТ');
+INSERT INTO chairs (name, dean) VALUES ('МатАн', 'РИТ');
+
+INSERT INTO student_group (numb, chair) VALUES ('БВТ2201', 'МКиИТ');
+INSERT INTO student_group (numb, chair) VALUES ('БВТ2202', 'МКиИТ');
+INSERT INTO student_group (numb, chair) VALUES ('БCТ2201', 'МатАн');
+INSERT INTO student_group (numb, chair) VALUES ('БCТ2202', 'МатАн');
+
+
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Иванов Иван Иванович', '1234567890', 'БВТ2201');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Петров Петр Петрович', '2345678901', 'БВТ2201');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Сидоров Сидор Сидорович', '3456789012', 'БВТ2201');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Кузнецова Елена Александровна', '4567890123', 'БВТ2201');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Смирнова Анастасия Олеговна', '5678901234', 'БВТ2201');
+
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Иванова Анна Сергеевна', '9876543210', 'БВТ2202');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Козлова Екатерина Владимировна', '8765432109', 'БВТ2202');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Новикова Дарья Александровна', '7654321098', 'БВТ2202');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Тимофеева Ольга Викторовна', '6543210987', 'БВТ2202');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Жукова Мария Ивановна', '5432109876', 'БВТ2202');
+
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Кузнецова Александра Сергеевна', '1234567890', 'БCТ2201');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Петрова Елена Игоревна', '2345678901', 'БCТ2201');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Сидорова Ольга Александровна', '3456789012', 'БCТ2201');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Иванова Екатерина Владимировна', '4567890123', 'БCТ2201');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Никитина Мария Петровна', '5678901234', 'БCТ2201');
+
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Козлова Ольга Павловна', '6789012345', 'БCТ2202');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Смирнова Анастасия Сергеевна', '7890123456', 'БCТ2202');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Попова Екатерина Ивановна', '8901234567', 'БCТ2202');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Михайлова Марина Александровна', '9012345678', 'БCТ2202');
+INSERT INTO student (full_name, passport, group_numb) VALUES ('Васильева Ирина Дмитриевна', '0123456789', 'БCТ2202');
